@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JJS's Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="project.css" />
+  </head>
+  <body>
+    <!-- 상단 바 -->
+    <header class="header">
+      <div class="portfolio-title">
+        JJS<span class="portfolio-sub">'s Portfolio</span>
+      </div>
+      <nav class="navbar">
+        <a href="index.html">HOME</a>
+        <a href="about.html">About</a>
+        <a href="project.html" class="active">Project</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </header>
+    <!-- 메인 갤러리 섹션 -->
+    <div class="gallery-section">
+      <div class="gallery-main">
+        <div class="gallery-main-item">
+          <img src="image/logo.png" alt="대표 프로젝트" />
+          <div class="gallery-main-caption">
+            Finall-Homework<br />
+            <button class="toggle-desc-btn" type="button">
+              클릭하여 상세보기
+            </button>
+          </div>
+          <!-- 팝업 내용(숨김) -->
+          <div class="gallery-popup-content" style="display: none">
+            <div class="gallery-popup-inner">
+              <div class="gallery-popup-title">대표 프로젝트 설명</div>
+              <div class="gallery-popup-desc">
+                이번 프로젝트는 팀 단위로 진행한 웹 서비스 개발 과제입니다.<br />
+                주요 기술: HTML, CSS, JavaScript 등<br />
+                다양한 사용자 기능과 팀 협업 환경을 구현하였습니다.<br />
+                자세한 내용은 이미지를 클릭해 확인하세요!
+              </div>
+              <div class="gallery-popup-images">
+                <img src="image/final1.png" alt="1" class="popupable" />
+                <img src="image/final2.png" alt="2" class="popupable" />
+                <img src="image/final3.png" alt="5" class="popupable" />
+                <img src="image/final4.png" alt="3" class="popupable" />
+                <img src="image/final5.png" alt="4" class="popupable" />
+              </div>
+              <div class="gallery-popup-texts">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-row">
+        <div
+          class="gallery-row-item"
+          data-url="https://hcj-demo-psi.vercel.app/"
+        >
+          <img src="image/HCJ-Demo.png" alt="HCJ-Demo" />
+          <div class="gallery-row-caption">
+            HCJ-Demo<br />
+            <button class="toggle-desc-btn" type="button">
+              클릭하여 상세보기
+            </button>
+          </div>
+          <div class="gallery-popup-content" style="display: none">
+            <div class="gallery-popup-inner">
+              <div class="gallery-popup-title">HCJ-Demo</div>
+              <div class="gallery-popup-desc">
+                HTML, CSS, JavaScript의 기초를 익히기 위한 실습
+                프로젝트입니다.<br />
+                웹페이지 구조와 스타일, 기본적인 동적 기능 구현을 경험할 수
+                있습니다.
+              </div>
+              <div class="gallery-popup-images">
+                <img src="image/HCJ-Demo1.png" alt="hcj1" class="popupable" />
+                <img src="image/HCJ-Demo2.png" alt="hcj2" class="popupable" />
+                <img src="image/HCJ-Demo3.png" alt="hcj3" class="popupable" />
+              </div>
+              <div class="gallery-popup-texts">
+                <span>메인 페이지 및 네비게이션 구조</span>
+                <span>HTML 태그와 레이아웃 실습</span>
+                <span>자바스크립트 동작 예시</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="gallery-row-item"
+          data-url="https://middle-homework.vercel.app/"
+        >
+          <img src="image/HTML-Project.png" alt="서브 프로젝트2" />
+          <div class="gallery-row-caption">
+            HTML-Project<br />
+            <button class="toggle-desc-btn" type="button">
+              클릭하여 상세보기
+            </button>
+          </div>
+          <div class="gallery-popup-content" style="display: none">
+            <div class="gallery-popup-inner">
+              <div class="gallery-popup-title">HTML-Project</div>
+              <div class="gallery-popup-desc">
+                HTML의 기본 구조와 태그 활용을 연습한 실습 프로젝트입니다.<br />
+                웹페이지의 레이아웃 구성과 시맨틱 태그, 표, 폼 등 <br />
+                다양한 요소를 직접 구현해볼 수 있습니다.
+              </div>
+              <div class="gallery-popup-images">
+                <img
+                  src="image/HTML-Project1.png"
+                  alt="시맨틱 레이아웃"
+                  class="popupable"
+                />
+                <img
+                  src="image/HTML-Project2.png"
+                  alt="표와 리스트"
+                  class="popupable"
+                />
+                <img
+                  src="image/HTML-Project3.png"
+                  alt="폼 요소"
+                  class="popupable"
+                />
+              </div>
+              <div class="gallery-popup-texts">
+                <span>시맨틱 태그를 활용한 전체 레이아웃</span>
+                <span>표와 리스트, 이미지 삽입 예시</span>
+                <span>폼(form) 요소와 입력 필드 구현</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="gallery-row-item"
+          data-url="https://middle-homework.vercel.app/"
+        >
+          <img src="image/Middle_Homework.png" alt="서브 프로젝트3" />
+          <div class="gallery-row-caption">
+            Middle_Homework<br />
+            <button class="toggle-desc-btn" type="button">
+              클릭하여 상세보기
+            </button>
+          </div>
+          <div class="gallery-popup-content" style="display: none">
+            <div class="gallery-popup-inner">
+              <div class="gallery-popup-title">Middle_Homework</div>
+              <div class="gallery-popup-desc">
+                중간고사 과제로 제출한 웹 프로젝트입니다.<br />
+                HTML, CSS, JavaScript를 활용하여 다양한 웹 요소와 기능을 <br />
+                직접 구현하였습니다.
+              </div>
+              <div class="gallery-popup-images">
+                <img
+                  src="image/Middle_Homework1.png"
+                  alt="메인 페이지"
+                  class="popupable"
+                />
+                <img
+                  src="image/Middle_Homework2.png"
+                  alt="로그인/회원가입"
+                  class="popupable"
+                />
+                <img
+                  src="image/Middle_Homework3.png"
+                  alt="게시판"
+                  class="popupable"
+                />
+                <img
+                  src="image/Middle_Homework4.png"
+                  alt="반응형 UI"
+                  class="popupable"
+                />
+              </div>
+              <div class="gallery-popup-texts">
+                <span>메인 페이지 및 전체 레이아웃</span>
+                <span>로그인/회원가입 폼 구현</span>
+                <span>게시판 및 글쓰기 기능</span>
+                <span>반응형 UI 및 스타일 적용</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="gallery-row-item"
+          data-url="https://my-team-pi-seven.vercel.app/"
+        >
+          <img src="image/My Team.png" alt="My Team" />
+          <div class="gallery-row-caption">
+            My Team<br />
+            <button class="toggle-desc-btn" type="button">
+              클릭하여 상세보기
+            </button>
+          </div>
+          <div class="gallery-popup-content" style="display: none">
+            <div class="gallery-popup-inner">
+              <div class="gallery-popup-title">My Team</div>
+              <div class="gallery-popup-desc">
+                팀 프로젝트로 진행한 웹 서비스입니다.<br />
+                팀원 소개, 역할 분담, 일정 관리 등 협업에 필요한 <br />
+                다양한 기능을 구현하였습니다.
+              </div>
+              <div class="gallery-popup-images">
+                <img
+                  src="image/My Team1.png"
+                  alt="메인 페이지"
+                  class="popupable"
+                />
+                <img
+                  src="image/My Team2.png"
+                  alt="팀원 소개"
+                  class="popupable"
+                />
+                <img src="image/My Team3.png" alt="xss" class="popupable" />
+                <img src="image/My Team4.png" alt="csrf" class="popupable" />
+                <img src="image/My Team5.png" alt="sqli" class="popupable" />
+                <img src="image/My Team6.png" alt="cmdi" class="popupable" />
+              </div>
+              <div class="gallery-popup-texts">
+                <span>메인 페이지 및 서비스 소개</span>
+                <span>팀원 소개 페이지</span>
+                <span>XSS</span>
+                <span>CSRF</span>
+                <span>SQLI</span>
+                <span>CMDI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 전역 팝업: 항상 화면 중앙에 하나만 -->
+    <div id="globalPopup" class="gallery-popup" tabindex="-1">
+      <button class="gallery-popup-close" title="닫기" type="button">
+        &times;
+      </button>
+      <div class="gallery-popup-inner" id="globalPopupContent"></div>
+    </div>
+    <button id="scrollTopBtn" class="scroll-top-btn" title="맨 위로">
+      <img src="image/top.png" alt="맨 위로" />
+    </button>
+    <div id="imagePopup" class="image-popup">
+      <img id="popupImg" class="popup-img" />
+    </div>
+    <!-- 푸터 -->
+    <footer class="footer-bar">
+      <div class="footer-title">
+        그리고 <span class="footer-sub">갤러리</span>
+      </div>
+    </footer>
+    <script src="project.js"></script>
+  </body>
+</html>
