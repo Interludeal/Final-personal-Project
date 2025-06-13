@@ -59,7 +59,6 @@ body {
   color: #1565c0;
   background: rgba(0, 0, 0, 0.04);
 }
-
 .team-title {
   text-align: center;
   font-size: 2.8rem;
@@ -69,20 +68,18 @@ body {
   color: #333;
   letter-spacing: 0.01em;
 }
-
 .team-grid {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   gap: 2.5rem;
-  flex-wrap: nowrap; /* 줄바꿈 방지 */
-  max-width: none; /* 가로폭 제한 해제 */
+  flex-wrap: nowrap;
+  max-width: none;
   margin: 0 auto 40px auto;
   padding: 0 1.5rem;
   min-height: 500px;
 }
-
 .team-card {
   background: #fff;
   border-radius: 24px;
@@ -196,7 +193,6 @@ body {
     transform: translateY(0);
   }
 }
-
 .footer-bar {
   position: fixed;
   left: 0;
@@ -229,8 +225,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.01em;
 }
-
-/* 맨 위로 버튼 */
 .scroll-top-btn {
   position: fixed;
   right: 32px;
@@ -261,10 +255,8 @@ body {
   box-shadow: 0 6px 24px rgba(0, 123, 255, 0.18);
 }
 main {
-  margin-top: 110px; /* header 높이(80px) + 여유 */
+  margin-top: 110px;
 }
-
-/* 반응형 */
 @media (max-width: 1100px) {
   .team-grid {
     gap: 1.2rem;

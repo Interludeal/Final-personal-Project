@@ -1,46 +1,33 @@
-// --- 맨 위로 버튼 기능 ---
 const scrollTopBtn = document.getElementById('scrollTopBtn')
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 180) {
-    scrollTopBtn.style.display = 'flex'
-  } else {
-    scrollTopBtn.style.display = 'none'
-  }
+  scrollTopBtn.style.display = window.scrollY > 180 ? 'flex' : 'none'
 })
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-})
+scrollTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
-// --- 팝업 관련 요소 참조 및 기능 ---
 const photoPopup = document.getElementById('photoPopup')
 const popupImg = document.getElementById('popupImg')
 const popupBg = document.querySelector('.popup-bg')
-const profilePhoto = document.getElementById('profilePhoto')
-
-// 프로필 사진 클릭 시 팝업
-if (profilePhoto) {
-  profilePhoto.addEventListener('click', () => {
-    popupImg.src = profilePhoto.src
-    photoPopup.classList.add('active')
-  })
+function openPopup(src) {
+  popupImg.src = src
+  photoPopup.classList.add('active')
 }
-
-// 팝업 닫기(배경 클릭, 이미지 클릭, ESC)
 function closePopup() {
   photoPopup.classList.remove('active')
   popupImg.src = ''
 }
 if (photoPopup && popupBg && popupImg) {
-  popupBg.addEventListener('click', closePopup)
-  popupImg.addEventListener('click', closePopup)
+  popupBg.onclick = closePopup
+  popupImg.onclick = closePopup
   window.addEventListener('keydown', (e) => {
-    if (photoPopup.classList.contains('active') && e.key === 'Escape') {
+    if (photoPopup.classList.contains('active') && e.key === 'Escape')
       closePopup()
-    }
   })
 }
+document.body.addEventListener('click', (e) => {
+  if (e.target.matches('#profilePhoto, .slide-img, .solve-img'))
+    openPopup(e.target.src)
+})
 
-// --- 개인 프로젝트 슬라이더 (home 방식 애니메이션 적용) ---
 const projects = [
   {
     img: 'image/web_1.png',
@@ -98,40 +85,64 @@ const projects = [
     desc: '플레이어 관리, 턴 기반 진행, 매트릭스 <br> 기반 게임 보드를 포함하여 <br> 게임 개발을 하였습니다. <br> 평소보단 비교적 장기간동안 진행하였으며, Python의 활용능력이 <br> 대폭 상승하는 계기가 되었습니다.',
   },
 ]
-
 const sliderTrack = document.getElementById('sliderTrack')
 const sliderMainBtn = document.getElementById('sliderMainBtn')
-let currentSlide = 0
-let isAnimating = false
-
+let currentSlide = 0,
+  isAnimating = false
 function renderSlides() {
   if (!sliderTrack) return
-  sliderTrack.innerHTML = ''
-  projects.forEach((p, i) => {
-    const slide = document.createElement('div')
-    slide.className = 'slide' + (i === currentSlide ? ' active' : '')
-    slide.style.transform = 'translateX(' + (i - currentSlide) * 100 + '%)'
-    slide.innerHTML = `
-      <img src="${p.img}" alt="${p.title}" class="slide-img" data-slide-idx="${i}" />
+  sliderTrack.innerHTML = projects
+    .map(
+      (p, i) => `
+    <div class="slide${
+      i === currentSlide ? ' active' : ''
+    }" style="transform:translateX(${(i - currentSlide) * 100}%);">
+      <img src="${p.img}" alt="${
+        p.title
+      }" class="slide-img" data-slide-idx="${i}" />
       <div class="slide-desc">
         <div class="slide-title">${p.title}</div>
         <div>${p.desc}</div>
       </div>
-    `
-    sliderTrack.appendChild(slide)
-  })
-  // 슬라이드 이미지 클릭 시 팝업
-  sliderTrack.querySelectorAll('.slide-img').forEach((img) => {
-    img.addEventListener('click', (e) => {
-      popupImg.src = img.src
-      photoPopup.classList.add('active')
-    })
-  })
+    </div>
+  `
+    )
+    .join('')
 }
+function animateSlideChange(nextIdx) {
+  if (isAnimating || nextIdx === currentSlide) return
+  isAnimating = true
+  const slides = sliderTrack.querySelectorAll('.slide')
+  const prevImg = slides[currentSlide].querySelector('.slide-img')
+  const nextImg = slides[nextIdx].querySelector('.slide-img')
+  prevImg.classList.remove('anim-in')
+  prevImg.classList.add('anim-out')
+  setTimeout(() => {
+    slides.forEach((slide, i) => {
+      slide.style.transition = 'transform 0.45s cubic-bezier(.7,1.6,.5,1)'
+      slide.style.transform = `translateX(${(i - nextIdx) * 100}%)`
+      slide.classList.toggle('active', i === nextIdx)
+    })
+    prevImg.classList.remove('anim-out')
+    nextImg.classList.add('anim-in')
+    setTimeout(() => {
+      nextImg.classList.remove('anim-in')
+      slides.forEach((slide) => (slide.style.transition = ''))
+      currentSlide = nextIdx
+      isAnimating = false
+    }, 220)
+  }, 120)
+}
+sliderMainBtn?.addEventListener('click', () => {
+  if (!isAnimating) animateSlideChange((currentSlide + 1) % projects.length)
+})
+sliderTrack?.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('slide-img') && !isAnimating) {
+    animateSlideChange((currentSlide + 1) % projects.length)
+  }
+})
+renderSlides()
 
-// ...existing code...
-
-// --- 다짐(Goal) 명언 랜덤 변경 기능 ---
 const goalQuotes = [
   'Act as if you have already achieved',
   'The best way to get started is to quit talking and begin doing.',
@@ -145,67 +156,11 @@ const goalQuotes = [
   'Your limitation—it’s only your imagination.',
 ]
 const goalEm = document.querySelector('.resume-section.goal em')
-if (goalEm) {
-  goalEm.addEventListener('click', () => {
-    let current = goalEm.textContent.replace(/“|”/g, '').trim()
-    let next
-    do {
-      next = goalQuotes[Math.floor(Math.random() * goalQuotes.length)]
-    } while (next === current)
-    goalEm.textContent = `“${next}”`
-  })
-}
-
-// ...existing code...
-// home 방식: 클릭 시 이미지에 페이드 아웃/인 애니메이션
-function animateSlideChange(nextIdx) {
-  if (isAnimating || nextIdx === currentSlide) return
-  isAnimating = true
-  const slides = sliderTrack.querySelectorAll('.slide')
-  const prevSlide = slides[currentSlide]
-  const nextSlide = slides[nextIdx]
-
-  // 이미지 페이드 아웃/인
-  const prevImg = prevSlide.querySelector('.slide-img')
-  const nextImg = nextSlide.querySelector('.slide-img')
-
-  prevImg.classList.remove('anim-in')
-  prevImg.classList.add('anim-out')
-  setTimeout(() => {
-    slides.forEach((slide, i) => {
-      slide.style.transition = 'transform 0.45s cubic-bezier(.7,1.6,.5,1)'
-      slide.style.transform = 'translateX(' + (i - nextIdx) * 100 + '%)'
-      slide.classList.toggle('active', i === nextIdx)
-    })
-    prevImg.classList.remove('anim-out')
-    nextImg.classList.add('anim-in')
-    setTimeout(() => {
-      nextImg.classList.remove('anim-in')
-      slides.forEach((slide) => {
-        slide.style.transition = ''
-      })
-      currentSlide = nextIdx
-      isAnimating = false
-    }, 220)
-  }, 120)
-}
-
-// 중앙 버튼 클릭 시 다음 슬라이드(마지막->첫번째, 첫번째->다음)
-sliderMainBtn?.addEventListener('click', () => {
-  if (isAnimating) return
-  let next = currentSlide + 1
-  if (next >= projects.length) next = 0
-  animateSlideChange(next)
+goalEm?.addEventListener('click', () => {
+  let current = goalEm.textContent.replace(/“|”/g, '').trim()
+  let next
+  do {
+    next = goalQuotes[Math.floor(Math.random() * goalQuotes.length)]
+  } while (next === current)
+  goalEm.textContent = `“${next}”`
 })
-
-// 슬라이드 전체 클릭 시에도 넘기기(이미지 클릭은 팝업)
-sliderTrack?.addEventListener('click', (e) => {
-  if (e.target.classList.contains('slide-img')) return
-  if (isAnimating) return
-  let next = currentSlide + 1
-  if (next >= projects.length) next = 0
-  animateSlideChange(next)
-})
-
-// 초기화
-renderSlides()

@@ -1,4 +1,3 @@
-/* --- 기본 스타일 --- */
 body {
   margin: 0;
   padding: 0 0 48px 0;
@@ -62,10 +61,9 @@ body {
   background: rgba(0, 0, 0, 0.04);
 }
 
-/* --- 이력서 전체 박스 --- */
 .about-resume.resume-paper {
   max-width: 820px;
-  margin: 120px auto 0 auto;
+  margin: 120px auto 0;
   padding: 2.5rem 2.2rem;
   background: #fff;
   border-radius: 18px;
@@ -74,63 +72,28 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-  border: 1px solid #222; /* 검은색 얇은 테두리 추가 */
+  border: 1px solid #222;
   position: relative;
 }
 
-/* --- 프로필 박스 --- */
-/* 프로필 박스도 동일하게 */
-.resume-box.profile-box {
+.resume-box,
+.resume-box.profile-box,
+.goal-box {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(80, 120, 180, 0.06);
   border: 2px solid transparent;
+  padding: 1.3rem 1.5rem 1.1rem 1.5rem;
+  margin-bottom: 1.2rem;
+  transition: border 0.25s, box-shadow 0.25s;
 }
-.resume-box.profile-box:hover {
+.resume-box:hover,
+.resume-box.profile-box:hover,
+.goal-box:hover {
   border: 2px solid #2986f7;
+  box-shadow: 0 4px 24px rgba(80, 120, 180, 0.13);
 }
 
-/* SNS 버튼: 우측 하단 정렬 */
-.resume-sns {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 1.2rem;
-  position: static; /* position 속성 제거 또는 static으로 */
-  right: auto;
-  bottom: auto;
-  z-index: auto;
-}
-.sns-btn.no-bg {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  transition: transform 0.18s;
-}
-.sns-btn.no-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  background: transparent;
-  border-radius: 50%;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
-  transition: filter 0.18s, transform 0.18s;
-}
-.sns-btn.no-bg:hover img,
-.sns-btn.no-bg:focus-visible img {
-  filter: brightness(1.1) drop-shadow(0 2px 8px #1565c055);
-  transform: scale(1.12);
-}
-
-/* --- 프로필 정보 그리드 --- */
 .resume-grid {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -158,8 +121,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  position: relative;
   min-height: 140px;
+  position: relative;
 }
 .resume-header {
   display: flex;
@@ -207,7 +170,6 @@ body {
 }
 .resume-table {
   margin: 0.5em 0 0.2em 0;
-  position: static; /* 표는 상대/절대 위치 아님 */
 }
 .resume-table table {
   width: 100%;
@@ -238,28 +200,48 @@ body {
   font-weight: 400;
 }
 
-/* --- 기타 박스(경력, 기술 등) --- */
-.resume-box {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(80, 120, 180, 0.06);
-  border: 2px solid transparent; /* 기본 투명 */
-  padding: 1.3rem 1.5rem 1.1rem 1.5rem;
-  margin-bottom: 1.2rem;
-  transition: border 0.25s, box-shadow 0.25s;
+.resume-sns {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1.2rem;
+  position: static;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
 }
-.resume-box:hover {
-  border: 2px solid #2986f7; /* home 페이지와 동일한 파란색 */
-  box-shadow: 0 4px 24px rgba(80, 120, 180, 0.13);
+.sns-btn.no-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.18s;
 }
-.goal-box {
-  border: 2px solid transparent;
+.sns-btn.no-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  transition: filter 0.18s, transform 0.18s;
 }
-.goal-box:hover {
-  border: 2px solid #2986f7;
+.sns-btn.no-bg:hover img,
+.sns-btn.no-bg:focus-visible img {
+  filter: brightness(1.1) drop-shadow(0 2px 8px #1565c055);
+  transform: scale(1.12);
 }
 
-/* --- 챕터별 제목 및 리스트 --- */
 .resume-section h3 {
   margin: 0 0 0.5em 0;
   font-size: 1.13rem;
@@ -303,19 +285,18 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 .resume-section.goal em {
-  color: #232323; /* 파란색 → 기본 텍스트 색상 */
+  color: #232323;
   font-style: normal;
   font-weight: 700;
   margin-left: 0.5em;
-  background: none; /* 배경 제거 */
-  cursor: pointer; /* 클릭 가능하게 */
+  background: none;
+  cursor: pointer;
   transition: opacity 0.18s;
 }
 .resume-section.goal em:hover {
-  opacity: 0.7; /* 살짝 투명 효과 */
+  opacity: 0.7;
 }
 
-/* --- 학력 및 경력 리스트 --- */
 .career-list {
   list-style: none;
   padding: 0;
@@ -354,7 +335,6 @@ body {
   white-space: nowrap;
 }
 
-/* --- 프로젝트 슬라이더 --- */
 .project-slider-wrap {
   display: flex;
   align-items: center;
@@ -366,19 +346,10 @@ body {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  min-height: 370px; /* 높이 고정 (원하는 만큼 조절, 예: 370px) */
+  min-height: 370px;
   max-width: 700px;
   margin: 0 1rem;
   position: relative;
-  /* height: 370px;       /* 필요시 명시적으로 height도 추가 가능 */
-}
-.slider-btn:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-.slider-btn:hover:not(:disabled) {
-  background: #e3f0ff;
-  color: #0d47a1;
 }
 .slider-btn {
   width: 48px;
@@ -395,7 +366,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-.slider-btn:hover {
+.slider-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.slider-btn:hover:not(:disabled) {
   background: #e3f0ff;
   color: #0d47a1;
 }
@@ -531,7 +506,6 @@ body {
   transform: scale(1.2);
 }
 
-/* --- 푸터 --- */
 .footer-bar {
   position: fixed;
   left: 0;
@@ -565,7 +539,6 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* --- 맨 위로 버튼 --- */
 .scroll-top-btn {
   position: fixed;
   right: 32px;
@@ -596,7 +569,6 @@ body {
   box-shadow: 0 6px 24px rgba(0, 123, 255, 0.18);
 }
 
-/* --- 프로필 팝업 --- */
 .photo-popup {
   display: none;
   position: fixed;
@@ -641,7 +613,6 @@ body {
   }
 }
 
-/* --- 반응형 --- */
 @media (max-width: 900px) {
   .about-resume.resume-paper {
     padding: 1.2rem 0.5rem;
@@ -752,7 +723,7 @@ body {
     border-radius: 8px;
   }
 }
-/* ...existing code... */
+
 .school-link {
   color: #1565c0;
   text-decoration: underline;
@@ -763,19 +734,17 @@ body {
   color: #0d47a1;
   text-decoration: underline;
 }
-/* ...existing code... */
 .skills-img-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 28px 32px; /* 행, 열 간격 더 넓게 */
+  gap: 28px 32px;
   align-items: center;
   margin-top: 0.7em;
   justify-content: flex-start;
   max-width: 600px;
 }
-
 .skills-img-list img {
-  width: 68px; /* 크기 키움 */
+  width: 68px;
   height: 68px;
   object-fit: contain;
   border-radius: 12px;
@@ -784,9 +753,8 @@ body {
   padding: 8px;
   transition: transform 0.18s, box-shadow 0.18s;
 }
-
 .skills-img-list img:hover {
-  transform: scale(1.18); /* 확대만 */
+  transform: scale(1.18);
   box-shadow: 0 4px 18px #1565c044;
 }
 .skills-img-list.center-skills {
@@ -799,7 +767,6 @@ body {
   max-width: 480px;
   margin: 0.7em auto 0 auto;
 }
-/* 관심분야 꾸미기 */
 .interest-area {
   display: flex;
   flex-direction: column;
@@ -848,4 +815,47 @@ body {
   height: 20px;
   object-fit: contain;
   opacity: 0.7;
+}
+.solve-img-list,
+.solve-img-list.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: unset !important;
+}
+.solve-img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 14px;
+  background: #f6f6f6;
+  box-shadow: 0 2px 10px rgba(80, 120, 180, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.solve-img:hover {
+  box-shadow: 0 6px 24px #1565c044;
+  transform: scale(1.06);
+}
+.solve-link-btn {
+  font-size: 0.98em;
+  color: #1565c0;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  margin-left: 1.1em;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.18s;
+}
+.solve-link-btn:hover {
+  color: #0d47a1;
+  text-decoration: underline;
 }
